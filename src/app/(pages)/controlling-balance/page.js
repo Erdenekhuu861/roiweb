@@ -9,9 +9,9 @@ export default function ControllingBalance() {
         </div>
         <div>Flags</div>
       </div>
-      <div className="flex w-full flex-wrap gap-5">
+      <div className="w-full grid grid-cols-1 xl:grid-cols-2 gap-5">
         {[{}, {}, {}, {}, {}, {}].map((x, i) => (
-          <div key={i * 123} className="flex bg-[#1C1C1C] py-3 px-5 w-[49%]">
+          <div key={i * 123} className="flex bg-[#1C1C1C] py-3 px-5 w-full rounded">
             <div className="w-[60%] border-r border-white pr-5">
               <div className="flex gap-8 items-center mb-3">
                 <div className="bg-[#EB5757] w-[80px] h-[80px] rounded-full"></div>

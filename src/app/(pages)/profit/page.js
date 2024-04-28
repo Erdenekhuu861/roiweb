@@ -33,7 +33,7 @@ export default function Profit() {
         {tabs.map((x, i) => (
           <div
             key={i * 123}
-            className={`h-[35px] w-[165px] flex justify-center items-center cursor-pointer ${
+            className={`h-[35px] w-[165px] flex justify-center items-center cursor-pointer rounded transition-all ${
               selectedTab === x ? "bg-[#27AE60]" : "bg-[#1C1C1C]"
             }`}
             onClick={() => setSelectedTab(x)}

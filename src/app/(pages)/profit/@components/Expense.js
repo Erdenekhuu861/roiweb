@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -10,7 +10,7 @@ import {
   Legend,
 } from "chart.js";
 import { Bar, Doughnut } from "react-chartjs-2";
-
+import { DropdownMenu, DropdownMenuItem, DropdownMenuContent, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -22,6 +22,21 @@ ChartJS.register(
 );
 
 export default function Expense() {
+
+  const [state, setState] = useState({
+    typeOne: 'Monthly',
+    typeTwo: 'Daily'
+  })
+
+  function set (obj = {}) {
+    return setState(prev => {
+      return {
+        ...prev,
+        ...(typeof obj === 'function' ? obj?.(prev) : obj)
+      }
+    })
+  }
+
   const expenseData = {
     labels: [
       "Jan",
@@ -106,16 +121,29 @@ export default function Expense() {
     ],
   };
 
+  function changeType(key, val) {
+    set({[key]: val})
+  }
+
   return (
     <div className="gap-8 flex flex-col pb-16 text-white">
       <div className="w-full">
         <div className="w-full flex justify-end">
-          <div className="bg-[#1C1C1C] w-fit flex items-center gap-[10px] px-[10px] py-1 cursor-pointer">
-            Monthly
-            <img src="/icons/chevron_down.png" height={15} width={15} />
-          </div>
+          <DropdownMenu>
+            <DropdownMenuTrigger>
+              <div className="bg-[#1C1C1C] flex items-center gap-[10px] px-4 py-1 cursor-pointer rounded-t w-[130px] min-w-[130px] justify-center">
+                {state.typeOne}
+                <img src="/icons/chevron_down.png" height={15} width={15} />
+              </div>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className='bg-[#141414] text-[#e3e3e3]'>
+              <DropdownMenuItem className='cursoir-pointer' onClick={() => changeType('typeOne', 'Daily')}>Daily</DropdownMenuItem>
+              <DropdownMenuItem className='cursoir-pointer' onClick={() => changeType('typeOne', 'Monthly')}>Monthly</DropdownMenuItem>
+              <DropdownMenuItem className='cursoir-pointer' onClick={() => changeType('typeOne', 'Yearly')}>Yearly</DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
-        <div className="bg-[#1C1C1C] w-full h-[410px] py-5 px-6">
+        <div className="bg-[#1C1C1C] w-full h-[410px] py-5 px-6 rounded-b rounded-tl">
           <div className="px-28 flex gap-2 items-end">
             <div className="text-[25px] font-medium">Total expense</div>
             <div className="text-[15px] pb-1">{`(Monthly)`}</div>
@@ -133,9 +161,21 @@ export default function Expense() {
       </div>
       <div className="w-full">
         <div className="w-full flex justify-end">
-          <div className="bg-[#1C1C1C] w-fit">Monthly</div>
+          <DropdownMenu>
+            <DropdownMenuTrigger>
+              <div className="bg-[#1C1C1C] flex items-center gap-[10px] px-4 py-1 cursor-pointer rounded-t w-[130px] min-w-[130px] justify-center">
+                {state.typeTwo}
+                <img src="/icons/chevron_down.png" height={15} width={15} />
+              </div>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className='bg-[#141414] text-[#e3e3e3]'>
+              <DropdownMenuItem className='cursoir-pointer' onClick={() => changeType('typeTwo', 'Daily')}>Daily</DropdownMenuItem>
+              <DropdownMenuItem className='cursoir-pointer' onClick={() => changeType('typeTwo', 'Monthly')}>Monthly</DropdownMenuItem>
+              <DropdownMenuItem className='cursoir-pointer' onClick={() => changeType('typeTwo', 'Yearly')}>Yearly</DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
-        <div className="bg-[#1C1C1C] w-full h-[410px] py-5 px-6">
+        <div className="bg-[#1C1C1C] w-full h-[410px] py-5 px-6 rounded-b rounded-tl">
           <div className="px-28 flex gap-2 items-end">
             <div className="text-[25px] font-medium">Total expense</div>
             <div className="text-[15px] pb-1">{`(Monthly)`}</div>

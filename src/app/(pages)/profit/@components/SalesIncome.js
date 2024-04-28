@@ -112,12 +112,12 @@ export default function SalesIncome() {
     <div className="gap-8 flex flex-col pb-16 text-white">
       <div className="w-full">
         <div className="w-full flex justify-end">
-          <div className="bg-[#1C1C1C] w-fit flex items-center gap-[10px] px-[10px] py-1 cursor-pointer">
+          <div className="bg-[#1C1C1C] w-fit flex items-center gap-[10px] px-4 py-1 cursor-pointer rounded-t">
             Monthly
             <img src="/icons/chevron_down.png" height={15} width={15} />
           </div>
         </div>
-        <div className="bg-[#1C1C1C] w-full h-[410px] py-5 px-6">
+        <div className="bg-[#1C1C1C] w-full h-[410px] py-5 px-6 rounded-b rounded-tl">
           <div className="px-28 flex gap-2 items-end">
             <div className="text-[25px] font-medium">Sales income</div>
             <div className="text-[15px] pb-1">{`(Monthly)`}</div>
@@ -135,12 +135,12 @@ export default function SalesIncome() {
       </div>
       <div className="w-full">
         <div className="w-full flex justify-end">
-          <div className="bg-[#1C1C1C] w-fit flex items-center gap-[10px] px-[10px] py-1 cursor-pointer">
+          <div className="bg-[#1C1C1C] w-fit flex items-center gap-[10px] px-4 py-1 cursor-pointer rounded-t">
             Monthly
             <img src="/icons/chevron_down.png" height={15} width={15} />
           </div>
         </div>
-        <div className="bg-[#1C1C1C] w-full max-h-[1100px] overflow-auto py-5 px-6 flex gap-8">
+        <div className="bg-[#1C1C1C] w-full h-fit py-5 px-6 flex gap-8 rounded-b rounded-tl">
           <div className="w-[40%]">
             <div className="flex w-full text-[15px] text-white font-bold pb-2">
               <div className="w-[7%]"></div>
@@ -152,7 +152,7 @@ export default function SalesIncome() {
               {[{}, {}, {}, {}, {}, {}].map((x, i) => (
                 <div
                   key={i * 123}
-                  className="flex w-full items-center text-[15px] text-white font-bold bg-[#101010] rounded-[5px] p-[10px]"
+                  className="flex w-full items-center text-[15px] text-white font-bold bg-[#101010] cursor-pointer hover:bg-[#151515] transition-all rounded-[5px] p-[10px]"
                 >
                   <div className="w-[7%]">{i + 1}.</div>
                   <div className="flex items-center gap-3 w-[43%]">
@@ -172,12 +172,12 @@ export default function SalesIncome() {
               ))}
             </div>
           </div>
-          <div className="w-[60%]">
-            <div className="h-full w-full">
+          <div className="w-[60%] flex flex-col gap-4">
+            <div className="h-1/2 w-full">
               <div className="text-xl pl-7">Games</div>
               <Bar options={gamesOptions} data={gamesData} />
             </div>
-            <div className="h-full w-full">
+            <div className="h-1/2 w-full">
               <div className="text-xl pl-7">Agents</div>
               <Bar options={agentsOptions} data={agentsData} />
             </div>

@@ -82,15 +82,15 @@ export default function Agents() {
   const topOptions = {};
 
   return (
-    <div className="w-full h-full text-white flex flex-col gap-4">
+    <div className="w-full h-fit text-white flex flex-col gap-4 mb-5">
       <div className="w-full">
         <div className="w-full flex justify-end">
-          <div className="bg-[#1C1C1C] w-fit flex items-center gap-[10px] px-[10px] py-1 cursor-pointer">
+          <div className="bg-[#1C1C1C] w-fit flex items-center gap-[10px] px-[10px] py-1 cursor-pointer rounded-t">
             Monthly
             <img src="/icons/chevron_down.png" height={15} width={15} />
           </div>
         </div>
-        <div className="bg-[#1C1C1C] w-full h-[410px] py-5 px-6">
+        <div className="bg-[#1C1C1C] w-full h-[410px] py-5 px-6 rounded-b rounded-tl">
           <div className="px-28 flex gap-2 items-end">
             <div className="text-[25px] font-medium">Sales income</div>
             <div className="text-[15px] pb-1">{`(Monthly)`}</div>
@@ -107,7 +107,7 @@ export default function Agents() {
         </div>
       </div>
       <div className="w-full">
-        <div className="bg-[#1C1C1C] w-full py-5 px-6">
+        <div className="bg-[#1C1C1C] w-full py-5 px-6 rounded">
           <div className="w-full flex justify-between items-center">
             <div className="font-bold">User</div>
             <div className="flex items-center gap-4">
@@ -166,7 +166,7 @@ export default function Agents() {
         </div>
       </div>
       <div className="w-full">
-        <div className="bg-[#1C1C1C] w-full py-5 px-6 flex">
+        <div className="bg-[#1C1C1C] w-full py-5 px-6 flex rounded">
           <div className="w-[40%] flex flex-col gap-7">
             <div className="w-full flex justify-between">
               <div className="text-xl font-bold">Fee</div>
