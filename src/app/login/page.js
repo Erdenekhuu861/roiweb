@@ -2,8 +2,24 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
 import React from "react";
+import { useMainCtx } from "@/context/main";
 
 export default function Login() {
+
+  const { mainData, onChangeMainData } = useMainCtx()
+
+  const [data, setData] = useState({})
+
+  function set(obj = {}) {
+    setData((prev) => {
+      return {...prev, ...obj}
+    })
+  }
+
+  const handleChange = (e) => {
+    set({[e.target.name]: e.target.value})
+  }
+
   return (
     <div className="h-screen flex items-center justify-center bg-[#101010] text-white">
       <div
