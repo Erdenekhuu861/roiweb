@@ -1,6 +1,14 @@
-import React from "react";
+'use client'
+import React, { useEffect, useState } from "react";
 
 export default function Players() {
+
+  const [state, setState] = useState()
+
+  useEffect(() => {
+        
+  }, [])
+
   return (
     <div className="w-full h-full text-white">
       <div className="flex items-center gap-4 mb-5">
@@ -9,8 +17,47 @@ export default function Players() {
         </div>
         <div>Flags</div>
       </div>
-      <div className="flex w-full flex-wrap gap-5">
-        {[{}, {}, {}, {}, {}, {}].map((x, i) => (
+      <div className="flex w-full flex-wrap gap-5 bg-[#212121] p-2 rounded">
+        <div className="flex w-full h-fit">
+          <table className="table-fixed w-full text-sm">
+            <colgroup>
+              <col width={`20%`}/>
+              <col width={`15%`}/>
+              <col width={`10%`}/>
+              <col width={`10%`}/>
+              <col width={`20%`}/>
+              <col width={`10%`}/>
+              <col width={`10%`}/>
+            </colgroup>
+            <thead>
+              <tr className="py-1">
+                <th className="border-b border-b-[#414749]">USERNAME</th>
+                <th className="border-b border-b-[#414749]">USER SER#</th>
+                <th className="border-b border-b-[#414749]"></th>
+                <th className="border-b border-b-[#414749]"></th>
+                <th className="border-b border-b-[#414749]">AMOUNT</th>
+                <th className="border-b border-b-[#414749]">SIGNAL</th>
+                <th className="border-b border-b-[#414749]">SUBSCRIBE</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td className="py-3">username</td>
+                <td className="py-3 text-center">#1231231</td>
+                <td className="py-3 text-center">
+                  <div className="bg-emerald-200 text-emerald-600 px-3 rounded-lg text-center">
+                    online
+                  </div>
+                </td>
+                <td className="py-3 text-center">control</td>
+                <td className="py-3 text-right">25000$</td>
+                <td className="py-3 text-center">100ms</td>
+                <td className="py-3 text-center">23/04/22</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        {/* {[{}].map((x, i) => (
           <div key={i * 123} className="flex bg-[#1C1C1C] py-3 px-5 w-[49%]">
             <div className="w-[60%] border-r border-white pr-5">
               <div className="flex gap-8 items-center mb-3">
@@ -48,7 +95,7 @@ export default function Players() {
               </div>
             </div>
           </div>
-        ))}
+        ))} */}
       </div>
     </div>
   );

@@ -1,3 +1,4 @@
+'use client'
 import axios from "axios";
 import { signOut } from "next-auth/react";
 import { createContext, useContext, useEffect, useState } from "react";
@@ -15,8 +16,8 @@ export default function AuthProvider({ children }) {
 
     useEffect(() => {
         if (mainData.isAuth) {
-        getUserInfo();
-        getUserBalance();
+            // getUserInfo();
+            // getUserBalance();
         }
     }, [mainData.isAuth]);
 

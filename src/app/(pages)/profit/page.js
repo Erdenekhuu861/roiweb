@@ -5,9 +5,8 @@ import React, { useState } from "react";
 import NetProfit from "./@components/NetProfit";
 import SalesIncome from "./@components/SalesIncome";
 import Expense from "./@components/Expense";
-import OtherCost from "./@components/OtherCost";
 
-const tabs = ["Net Profit", "Sales income", "Expense", "Other cost"];
+const tabs = ["Net Profit", "Sales income", "Expense"];
 
 export default function Profit() {
   const [selectedTab, setSelectedTab] = useState("Net Profit");
@@ -20,8 +19,6 @@ export default function Profit() {
         return <SalesIncome />;
       case "Expense":
         return <Expense />;
-      case "Other cost":
-        return <OtherCost />;
       default:
         return <NetProfit />;
     }

@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState, useEffect } from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -11,6 +11,8 @@ import {
 } from "chart.js";
 import { Bar, Doughnut } from "react-chartjs-2";
 import { DropdownMenu, DropdownMenuItem, DropdownMenuContent, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import axios from "axios";
+
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -36,6 +38,10 @@ export default function Expense() {
       }
     })
   }
+
+  useEffect(() => {
+    get_chart_datas()
+  }, [])
 
   const expenseData = {
     labels: [
@@ -123,6 +129,16 @@ export default function Expense() {
 
   function changeType(key, val) {
     set({[key]: val})
+    get_chart_datas(val)
+  }
+
+  async function get_chart_datas(val = state.typeOne) {
+    const total_expense = await axios.get('/api', {
+      params: {
+        name: `/master/profit/totalexpense?type=${val}&sYear=${new Date().getFullYear()}&sMonth=${new Date().getMonth() + 1}`
+      }
+    })
+    console.log("total_expense ===>", total_expense)
   }
 
   return (
