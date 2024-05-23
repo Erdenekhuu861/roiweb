@@ -7,9 +7,11 @@ import React from "react";
 const menus = [
   { name: "Profit", link: "/profit" },
   { name: "Agents", link: "/agents" },
+  { name: "Agent list", link: "/agents/list" },
   { name: "Managers", link: "/managers" },
+  { name: "Manager list", link: "/managers/list" },
   { name: "Players", link: "/players" },
-  { name: "Controlling Balance", link: "/controlling-balance" },
+  // { name: "Controlling Balance", link: "/controlling-balance" },
 ];
 
 export default function Sidebar() {

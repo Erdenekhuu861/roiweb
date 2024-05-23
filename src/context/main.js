@@ -7,17 +7,20 @@ const MainCtx = createContext({});
 
 export default function AuthProvider({ children }) {
   const [mainData, setMainData] = useState({ isAuth: false });
+  const [isLoading, setIsLoading] = useState(true)
+  // useEffect(() => {
+  //   async function checker() {
+  //     await checkAuth();
+  //   }
+  //   checker()
+  // }, []);
 
-  useEffect(() => {
-    checkAuth();
-  }, []);
-
-  useEffect(() => {
-    if (mainData.isAuth) {
-      getUserInfo();
-      getUserBalance();
-    }
-  }, [mainData.isAuth]);
+  // useEffect(() => {
+  //   if (mainData.isAuth) {
+  //     getUserInfo();
+  //     getUserBalance();
+  //   }
+  // }, [mainData.isAuth]);
 
   function onChangeMainData() {
     setMainData({ ...mainData });
@@ -25,13 +28,17 @@ export default function AuthProvider({ children }) {
 
   async function checkAuth() {
     try {
+      await setIsLoading(true)
       const result = await axios.delete("/api").then((res) => res.data);
+      console.log('result ============>', result)
       if (result.isAuth) {
         mainData.isAuth = true;
         onChangeMainData();
       }
     } catch (error) {
       console.log(error, "error --- checkAuth --- AuthProvider");
+    } finally {
+      setIsLoading(false)
     }
   }
 
@@ -81,7 +88,7 @@ export default function AuthProvider({ children }) {
     try {
       const result = await axios.get("/api/logout").then((res) => res.data);
       if (result.success) {
-        signOut({ callbackUrl: "/" });
+        signOut({ callbackUrl: "/login" });
         mainData.isAuth = false;
         onChangeMainData();
       }
@@ -91,7 +98,7 @@ export default function AuthProvider({ children }) {
   }
 
   return (
-    <MainCtx.Provider value={{ mainData, onChangeMainData, logout }}>
+    <MainCtx.Provider value={{ mainData, isLoading, onChangeMainData, logout, checkAuth }}>
       {children}
     </MainCtx.Provider>
   );

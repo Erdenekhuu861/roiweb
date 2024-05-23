@@ -235,11 +235,11 @@ export default function Agents() {
                 </div>
               </div>
             </div>
-            <div className="flex flex-wrap gap-x-16 gap-y-11 px-[52px] border-l border-white">
+            <div className="grid grid-cols-2 grid-flow-row gap-5 px-[52px] border-l border-white">
               {[{}, {}, {}, {}, {}, {}, {}].map((x, i) => (
                 <div
                   key={i}
-                  className="w-[45.9%] flex items-center gap-4 bg-[#29292F] rounded-[5px] py-[10px] px-[14px]"
+                  className="w-full flex items-center gap-4 bg-[#29292F] rounded-[5px] py-[10px] px-[14px]"
                 >
                   <div className="bg-[#6370DD] w-12 h-12 rounded-full"></div>
                   <div>
