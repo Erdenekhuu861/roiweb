@@ -10,6 +10,7 @@ export async function POST(req) {
       .then((res) => res.data);
 
     if (result.status === 200) {
+      console.log("result ===>", result)
       await session().set("user", result.tokens);
       return NextResponse.json({
         status: result.status,

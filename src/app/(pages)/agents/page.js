@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -12,7 +12,8 @@ import {
   Legend,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
-
+import { DropdownMenu, DropdownMenuItem, DropdownMenuContent, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import axios from "axios";
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -24,6 +25,45 @@ ChartJS.register(
 );
 
 export default function Agents() {
+
+  const [state, setState] = useState({
+    typeOne: 'Monthly',
+    typeTwo: 'Daily',
+  })
+
+  function set (obj = {}) {
+    return setState(prev => {
+      return {
+        ...prev,
+        ...(typeof obj === 'function' ? obj?.(prev) : obj)
+      }
+    })
+  }
+
+  useEffect(() => {
+    get_chart_datas()
+  }, [])
+
+  function changeType(key, val) {
+    set({[key]: val})
+    get_chart_datas(val)
+  }
+
+  async function get_chart_datas(val = state.typeOne) {
+    const total_expense = await axios.get('/api', {
+      params: {
+        name: `/master/profit/salesincome?type=${val}&sYear=${new Date().getFullYear()}&sMonth=${new Date().getMonth() + 1}`
+      }
+    })
+
+    const for_agent = await axios.get('/api', {
+      params: {
+        name: '/master/profit/salesincome'
+      }
+    })
+    console.log("total_expense ===>", total_expense, for_agent)
+  }
+
   const salesData = {
     labels: [
       "Jan",
@@ -85,10 +125,19 @@ export default function Agents() {
     <div className="w-full h-fit text-white flex flex-col gap-4 mb-5">
       <div className="w-full">
         <div className="w-full flex justify-end">
-          <div className="bg-[#1C1C1C] w-fit flex items-center gap-[10px] px-[10px] py-1 cursor-pointer rounded-t">
-            Monthly
-            <img src="/icons/chevron_down.png" height={15} width={15} />
-          </div>
+          <DropdownMenu>
+          <DropdownMenuTrigger>
+            <div className="bg-[#1C1C1C] flex items-center gap-[10px] px-4 py-1 cursor-pointer rounded-t w-[130px] min-w-[130px] justify-center">
+              {state.typeOne}
+              <img src="/icons/chevron_down.png" height={15} width={15} />
+            </div>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent className='bg-[#141414] text-[#e3e3e3]'>
+            <DropdownMenuItem className='cursoir-pointer' onClick={() => changeType('typeOne', 'Daily')}>Daily</DropdownMenuItem>
+            <DropdownMenuItem className='cursoir-pointer' onClick={() => changeType('typeOne', 'Monthly')}>Monthly</DropdownMenuItem>
+            <DropdownMenuItem className='cursoir-pointer' onClick={() => changeType('typeOne', 'Yearly')}>Yearly</DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
         </div>
         <div className="bg-[#1C1C1C] w-full h-[410px] py-5 px-6 rounded-b rounded-tl">
           <div className="px-28 flex gap-2 items-end">

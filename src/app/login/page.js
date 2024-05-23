@@ -2,11 +2,13 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
-import React, { useState } from "react";
+import { useState } from "react";
 import { useMainCtx } from "@/context/main";
-import { toast } from 'sonner'
-import { useRouter } from 'next/navigation'
 import axios from "axios";
+import { signIn } from "next-auth/react";
+import { toast, Toaster } from "sonner";
+import { useRouter } from "next/navigation";
+
 export default function Login() {
 
   const { mainData, onChangeMainData } = useMainCtx()
